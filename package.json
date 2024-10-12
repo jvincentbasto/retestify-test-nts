@@ -1,0 +1,50 @@
+{
+  "name": "@retestify/test-ntsss",
+  "description": "Test Package - Node, Tsup, Semantic-Release (NTS)",
+  "version": "0.0.0-development",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "czi": "commitizen init cz-conventional-changelog --pnpm --save-dev --save-exact",
+    "cz": "echo 'cz or git cz or git-cz' && git ast && cz",
+    "lint": "tsc",
+    "build": "tsup-node",
+    "dryrun": "semantic-release --dry-run",
+    "publish": "semantic-release",
+    "release": "pnpm build && pnpm publish",
+    "tags": "npm dist-tags ls @retestify/test-nts",
+    "alias": "echo 'add(a) | remove(r) | set(s) '",
+    "delete-packages": "./scripts/delete-packages.sh ${1:-my-org} ${2:-all} ${3:-my-repo}"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "semantic-release": "^24.1.2",
+    "tsup": "^6.7.0",
+    "typescript": "^4.9.5"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvincentbasto/retestify-test-nts.git"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "tsup",
+    "semantic-release"
+  ],
+  "author": "retestify",
+  "bugs": {
+    "url": "https://github.com/jvincentbasto/retestify-test-nts/issues"
+  },
+  "homepage": "https://github.com/jvincentbasto/retestify-test-nts#readme",
+  "dependencies": {
+    "commitizen": "^4.3.1",
+    "prettier": "^2.8.8"
+  }
+}

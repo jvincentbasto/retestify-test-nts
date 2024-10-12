@@ -1,0 +1,54 @@
+name: CI
+on:
+  push:
+    branches:
+      - "**"
+  # pull_request:
+  #   branches:
+  #     - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: "pnpm"
+
+      # * DISPLAY BRANCHES
+      - name: Display Branches
+        run: |
+          echo "Current Branch: ${{ github.ref_name }}"
+
+      # - run: pnpm install
+      # - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint && pnpm build
+
+  # publish:
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.ref_name == 'master' }}
+  #   needs: [build]
+  #   permissions:
+  #     contents: write # publish a GitHub release
+  #     issues: write # to released issues
+  #     pull-requests: write # to released pull requests
+  #     id-token: write # OIDC for npm provenance
+  #   steps:
+  #     # * AUTHENTICATE NPM
+  #     - name: Authenticate Npm
+  #       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_RETESTIFY_TEST_NTS_TOKEN }}" > ~/.npmrc
+
+  #     # * SEMANTIC RELEASE PUBLISH
+  #     - name: Semantic Release Publish
+  #       run: pnpm release
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GH_RETESTIFY_TEST_NTS_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_RETESTIFY_TEST_NTS_TOKEN }}

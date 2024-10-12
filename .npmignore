@@ -1,0 +1,17 @@
+node_modules
+dist
+
+src
+
+.env
+.changeset
+.github
+.vscode
+.czrc
+
+package.json
+tsconfig.json
+tsup.config.js
+release.config.cjs
+
+scripts
