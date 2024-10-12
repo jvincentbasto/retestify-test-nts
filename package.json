@@ -12,7 +12,7 @@
     "build": "tsup-node",
     "dryrun": "semantic-release --dry-run",
     "publish": "semantic-release",
-    "release": "pnpm build && pnpm publish",
+    "release": "pnpm build && semantic-release",
     "tags": "npm dist-tags ls @retestify/test-nts",
     "alias": "echo 'add(a) | remove(r) | set(s) '",
     "delete-packages": "./scripts/delete-packages.sh ${1:-my-org} ${2:-all} ${3:-my-repo}"
